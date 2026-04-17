@@ -1,0 +1,13 @@
+ID: 123456
+Grades: 10 9 4 
+Final: 3
+Computed final grade is: 8
+ID: 123456
+Grades: 10 9 4 
+Final: 8
+ID: 123457
+Grades: 9 9 8 
+Final: 9
+ID: 123458
+Grades: 10 8 10 
+Final: 9

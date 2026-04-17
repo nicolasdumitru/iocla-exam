@@ -1,0 +1,9 @@
+./file
+0
+Sentence doesn't check
+Not enough arguments
+
+./file Maria
+0
+Sentence doesn't check
+My check is : 1

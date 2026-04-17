@@ -3,25 +3,24 @@
 
 // TODO a
 int random1 = -16;
-unsigned int random2 = 5;
+int random2 = 5;
 
 extern char *f(int a, int b);
 extern void g(char *s);
 
-void a()
-{
+void a() {
     printf("Arithmetics is %s arithmeting!\n", random1 < random2 ? "" : "not");
 }
 
-void b(void *f)
-{
+void b(void *f) {
     // TODO b: Cast f to a function that has its signature char *f(int a, int b).
     // Call f with random1 and random2 as parameters.
-    // Print the result. 
+    // Print the result.
+    char *s = ((char *(*)(int, int))f)(random1, random2);
+    printf("%s", s);
 }
 
-void c()
-{
+void c() {
     char *key = malloc(100);
 
     // TODO c: Check utils.o.
@@ -32,9 +31,7 @@ void c()
     free(key);
 }
 
-
-int main(void)
-{
+int main(void) {
     a();
     b((void *)f);
     c();

@@ -1,0 +1,35 @@
+a:
+age = 25 and name is Alice
+age = 30 and name is Bob
+age = 22 and name is Carol
+age = 28 and name is Dave
+age = 35 and name is Eve
+age = 26 and name is Frank
+age = 29 and name is Grace
+age = 31 and name is Hank
+age = 24 and name is Iris
+age = 27 and name is Jack
+b:
+age = 25 and name is Alice
+age = 30 and name is Bob
+age = 22 and name is Carol
+age = 28 and name is Dave
+age = 35 and name is Eve
+age = 26 and name is Frank
+age = 29 and name is Grace
+c:
+age = 25 and name is Alice
+age = 22 and name is Carol
+age = 28 and name is Dave
+age = 35 and name is Eve
+age = 26 and name is Frank
+age = 30 and name is Bob
+age = 29 and name is Grace
+d:
+age = 25 and name is A3e
+age = 22 and name is C3l
+age = 28 and name is D2e
+age = 35 and name is Eve
+age = 26 and name is F3k
+age = 30 and name is Bob
+age = 29 and name is G3e

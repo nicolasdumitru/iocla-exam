@@ -1,0 +1,25 @@
+***** TASK a *****
+stud->name: 0xffdb9994
+stud->grades: 0xffdb9a94
+stud->mean: 0xffdb9a98
+***** TASK b *****
+Name: Ionescu George
+Grades: 10 9 2
+Mean: 7.000000
+***** TASK c *****
+Name: Ionescu George
+Grades: 10 9 2
+Mean: 7.000000
+Name: TUDOSE Alina
+Grades: 9 9 8
+Mean: 8.660000
+Name: Dobromir Anca-Maria
+Grades: 10 8 10
+Mean: 9.330000
+***** TASK d *****
+Before toggle: Ionescu George
+After toggle: iONESCU gEORGE
+Before toggle: TUDOSE Alina
+After toggle: tudose aLINA
+Before toggle: Dobromir Anca-Maria
+After toggle: dOBROMIR aNCA-mARIA
