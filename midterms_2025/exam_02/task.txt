@@ -1,0 +1,41 @@
+Test Practic Midterm PCLP2 - Varianta 02
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+Anul 2157. Exploratorii digitali ai navei Bitron-7 trebuie să rezolve enigmele codificării interstelare pentru a supraviețui
+în vastul cosmos al biților.
+a) [2p] În universul digital, timpul nu curge liniar, ci într-un ciclu de 256 de unități. Exploratorii trebuie să calculeze
+exact cât să avanseze în timp pentru a ajunge la o destinație sigură. Determină valoarea corectă a lui time_jump
+implementând funcția calculate_time_jump() pentru ca nava să ajungă exact în anul destinație.
+b) [3p] Stația spațială Bitron-7 are o arhitectură haotică, iar exploratorii digitali trebuie să o optimizeze pentru a
+economisi resurse. Reorganizează câmpurile structurii SpaceColony pentru a reduce cât mai mult consumul de
+memorie.
+c) [5p] Modulul de comunicații al navei Bitron-9 trebuie să proceseze un flux de semnale și să detecteze valori
+anormale care ar putea indica prezența unei nave inamice. Un semnal este anormal dacă este negativ sau mai
+mare decât 100. Completați funcția detect_anomalies() folosind exclusiv instrucțiunile goto și if pentru
+controlul fluxului. Funcția trebuie să numere câte semnale anormale există în vectorul de intrare.
+Subiectul 2
+a) [3p] Nava Bitron-7 traversează un câmp de radiații cosmice care distorsionează calculele spațio-temporale. Exploratorii digitali trebuie să implementeze un sistem de siguranță pentru detectarea overflow-ului apărut la
+calculul coordonatelor de zbor după aplicarea impulsului vitezei. Implementați codul care adaugă viteza la
+fiecare coordonată și detectează posibilele overflow-uri. Dacă se detectează overflow, nava trebuie să emită o
+alertă și să abandoneze calculul. Altfel, va afișa noile coordonate. Afișarea se va face folosind funcția
+printf.
+b) [4p] Exploratorii digitali folosesc o matrice pentru a stoca valorile de calibrare ale sistemelor navei. Un bug în
+sistemul de adresare face ca nava să acceseze locații incorecte din memorie, cauzând citiri eronate. Corectați
+eroarea de adresare în codul dat pentru a accesa corect elementul de la poziția (2, 1) dintr-o matrice 3x3.
+c) [3p] Bitron-7 primește mesaje interstelare codificate ca valori numerice întregi. Pentru a decoda mesajul, implementați codul care parcurge vectorul de întregi și extrage fiecare octet, transformându-l într-un caracter ASCII
+și stocându-l în șirul decoded_message.
+
+10.05.2025
+
+

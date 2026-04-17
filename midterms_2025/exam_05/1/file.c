@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 char raw_data[] = {
     0x19, 0x00, 0x00, 0x00,  0x41, 0x6C, 0x69, 0x63, 0x65, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -21,45 +23,92 @@ struct Person {
 void show_raw_persons(char *arr)
 {
     // TODO a: Print age and name for every struct Person from raw_data
+    // Since each person takes 20 bytes (4 for int + 16 for char arr), we can cast pointer math
+    for (int i = 0; i < 10; ++i) {
+        struct Person *p = (struct Person*)(arr + i * 20);
+        printf("Age: %d, Name: %s\n", p->age, p->name);
+    }
 }
 
 struct Person *allocate_persons(char *arr, int num)
 {
     // TODO b: Allocate array of struct Person and populate it with first
     // n structs from raw_data
-	return NULL;
+    struct Person *vector = malloc(num * sizeof(struct Person));
+    for (int i = 0; i < num; ++i) {
+        vector[i] = *(struct Person*)(arr + i * 20);
+    }
+    return vector;
 }
 
 void show_persons(struct Person *p, int num)
 {
     // TODO b: Print num Person structs from array
+    for (int i = 0; i < num; ++i) {
+        printf("Age: %d, Name: %s\n", p[i].age, p[i].name);
+    }
+}
+
+static int count_bits(int n) {
+    int count = 0;
+    while (n) {
+        count += (n & 1);
+        n >>= 1;
+    }
+    return count;
+}
+
+static int compare_persons(const void *a, const void *b) {
+    struct Person *p1 = (struct Person *)a;
+    struct Person *p2 = (struct Person *)b;
+    int b1 = count_bits(p1->age);
+    int b2 = count_bits(p2->age);
+    if (b1 != b2) return b1 - b2;
+    return strcmp(p1->name, p2->name);
 }
 
 void sort_persons(struct Person *p, int num)
 {
     // TODO c: Sort num Person structs based on set bits in age and if
     // equal based on name
+    qsort(p, num, sizeof(struct Person), compare_persons);
 }
 
 void shorten_persons(struct Person *p, int num)
 {
     // TODO d: Shorten the name for the first num Person structs
+    for (int i = 0; i < num; ++i) {
+        int len = strlen(p[i].name);
+        if (len > 3) {
+            char first = p[i].name[0];
+            char last = p[i].name[len - 1];
+            sprintf(p[i].name, "%c%d%c", first, len, last);
+        }
+    }
 }
-
 
 int main(void)
 {
     printf("a:\n");
     // TODO a: Call show_raw_persons()
+    show_raw_persons(raw_data);
 
     printf("b:\n");
     // TODO b: Call allocate_persons() and show_persons()
+    struct Person *p = allocate_persons(raw_data, 10);
+    show_persons(p, 10);
 
     printf("c:\n");
     // TODO c: Call sort_persons() and show_persons()
+    sort_persons(p, 10);
+    show_persons(p, 10);
 
     printf("d:\n");
     // TODO d: CAll shorten_persons() and show_persons()
+    shorten_persons(p, 10);
+    show_persons(p, 10);
+    
+    free(p);
 
     return 0;
 }

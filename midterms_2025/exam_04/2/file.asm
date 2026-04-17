@@ -1,5 +1,3 @@
-%include "printf32.asm"
-
 extern printf
 
 ; the structure for a student
@@ -31,31 +29,64 @@ section .data
 			at grades, dw 10, 8, 10
 			at final, dw 0
 		iend
+		
+	fmt_id db "ID: %d", 10, 0
+	fmt_grades_hdr db "Grades: ", 0
+	fmt_grade db "%hd ", 0
+	fmt_nl db 10, 0
+	fmt_final db "Final: %d", 10, 0
+	fmt_computed db "Computed final grade is: %d", 10, 0
+
 section .text
 global main
 
 ; arg1 = struct student_t *student
 print_struct_elem:
-	push ebp
-	mov ebp, esp
+	push rbp
+	mov rbp, rsp
+	push rbx
+	push r12
 
-	mov edx, [ebp + 8]
-
-	mov ebx, [edx + id]
-	PRINTF32 `ID: %d\n\x0`, ebx
-
-	lea ebx, [edx + grades]
-
-	PRINTF32 `Grades: \x0`
-
+	mov rbx, rdi ; save student pointer
+	
+	lea rdi, [rel fmt_id]
+	mov esi, dword [rbx + id]
+	xor eax, eax
+	call printf
+	
+	lea rdi, [rel fmt_grades_hdr]
+	xor eax, eax
+	call printf
+	
 	; TODO a: Print each element of the grades[] array
-
-	PRINTF32 `\n\x0`
-
-	xor ebx, ebx
-	mov bx, word [edx + final]
-	PRINTF32 `Final: %d\n\x0`, ebx
-
+	mov r12, 3
+	xor rcx, rcx
+.loop_a:
+	cmp rcx, r12
+	jge .done_a
+	
+	lea rdi, [rel fmt_grade]
+	movsx rsi, word [rbx + grades + rcx * 2]
+	xor eax, eax
+	
+	push rcx ; preserve
+	call printf
+	pop rcx
+	
+	inc rcx
+	jmp .loop_a
+.done_a:
+	lea rdi, [rel fmt_nl]
+	xor eax, eax
+	call printf
+	
+	lea rdi, [rel fmt_final]
+	movsx rsi, word [rbx + final]
+	xor eax, eax
+	call printf
+	
+	pop r12
+	pop rbx
 	leave
 	ret
 
@@ -63,46 +94,107 @@ print_struct_elem:
 ; arg2 - len
 ; return final
 compute_final:
-
+	push rbp
+	mov rbp, rsp
+	
+	xor rcx, rcx
+	xor rax, rax ; sum
+	
+.loop_b:
+	cmp rcx, rsi
+	jge .done_b
+	
+	movsx rdx, word [rdi + rcx * 2]
+	add rax, rdx
+	
+	inc rcx
+	jmp .loop_b
+.done_b:
 	; TODO b: Return final as the nearest short value of the mean of the grades array
+	; (sum + len/2) / len
+	mov rcx, rsi
+	shr rcx, 1
+	add rax, rcx
+	
+	cqo
+	idiv rsi
 
+	leave
 	ret
 
 ; arg1 - struct student_t students[]
 ; arg2 - len
 check_final_grade:
-
+	push rbp
+	mov rbp, rsp
+	push r12
+	push r13
+	push r14
+	
+	mov r12, rdi ; students pointer
+	mov r13, rsi ; len
+	xor r14, r14 ; index
+	
+.loop_c:
+	cmp r14, r13
+	jge .done_c
+	
+	; compute student addr: students + idx * 12
+	mov rax, r14
+	imul rax, 12
+	add rax, r12
+	mov rdi, rax ; student pointer
+	push rdi ; save student pointer
+	
+	; calculate final
+	lea rdi, [rax + grades]
+	mov rsi, 3
+	call compute_final
+	
+	pop rdi
+	
 	; TODO c: Parse the students array. If the final grade is not correct, replace it with the correct value
-    ; After you check each structure, print its content
-    ; For this task, you have to use compute_final and print_struct_elem
-
+	movsx rdx, word [rdi + final]
+	cmp eax, edx
+	je .ok_c
+	
+	mov word [rdi + final], ax
+.ok_c:
+	call print_struct_elem
+	
+	inc r14
+	jmp .loop_c
+.done_c:
+	pop r14
+	pop r13
+	pop r12
+	leave
 	ret
 
 main:
-	push ebp
-	mov ebp, esp
+	push rbp
+	mov rbp, rsp
 
 	; Task a
-	push students
+	lea rdi, [rel students]
 	call print_struct_elem
-	add esp, 4
 
 	; Task b
-	lea ecx, [students + grades]
-	push dword [count_g]
-	push ecx
+	lea rdi, [rel students + grades]
+	movsx rsi, dword [rel count_g]
 	call compute_final
-	add esp, 8
-	PRINTF32 `Computed final grade is: %d\n\x0`, eax
-
+	
+	lea rdi, [rel fmt_computed]
+	mov esi, eax
+	xor eax, eax
+	call printf
 
 	; Task c
-	push dword [count_s]
-	push students
+	lea rdi, [rel students]
+	movsx rsi, dword [rel count_s]
 	call check_final_grade
-	add esp, 8
 
-	; Return 0.
+	; Return 0
 	xor eax, eax
 	leave
 	ret

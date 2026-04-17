@@ -31,9 +31,25 @@ void print_text(struct text t)
 void solve(struct text letter)
 {
 	/* SOLVING STARTS */
+	// We dynamically allocate a deep copy of the string array elements so `number_lines`
+	// can safely use `sprintf` on them without crashing when trying to write to read-only memory.
+	char **new_lines = malloc(letter.line_count * sizeof(char*));
+	for (int i = 0; i < letter.line_count; i++) {
+		new_lines[i] = malloc(1024);
+		strcpy(new_lines[i], letter.lines[i]);
+	}
+	
+	// Pass our newly writable string buffers
+	letter.lines = new_lines;
 
 	number_lines(letter);
 	print_text(letter);
+
+	// Cleanup
+	for (int i = 0; i < letter.line_count; i++) {
+		free(new_lines[i]);
+	}
+	free(new_lines);
 	/* SOLVING ENDS */
 }
 

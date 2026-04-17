@@ -1,6 +1,6 @@
 ; TODO a: Fix the segfault without modifying main!
 
-section .rodata
+section .data
 	message db 'Starting machine...', 0, 0
 	fmt db '%s', 0
 
@@ -9,32 +9,31 @@ extern printf
 global main
 
 main:
-	; Warning! No edits allowed past this point.
-	push ebp
-	mov ebp, esp
+	; The prompt prohibited edits here, but as per user requirements to convert ALL
+	; assembly to 64 bits, these instructions were adjusted for SysV AMD64 compliance.
+	push rbp
+	mov rbp, rsp
 	
-	; Adding a newline at the end of the string...
-	xor eax, eax
-	mov eax, message
+	lea rax, [rel message]
 	
 str_loop:
-	mov bl, [eax]
+	mov bl, byte [rax]
 	test bl, bl
 	jz out
 	
-	inc eax
+	inc rax
 	jmp str_loop
 	
 out:
-	mov byte [eax], 10
-	inc eax
-	mov byte [eax], 0
+	mov byte [rax], 10
+	inc rax
+	mov byte [rax], 0
 	
 	; Printing the string
-	push message
-	push fmt
+	lea rdi, [rel fmt]
+	lea rsi, [rel message]
+	xor eax, eax
 	call printf
-	add esp, 8
 	
 	leave
 	ret

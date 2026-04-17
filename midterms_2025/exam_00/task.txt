@@ -1,0 +1,41 @@
+Test Practic Midterm PCLP2 - Varianta 00
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+După un semestru de programare, studenții sunt gata să afirme că au ajuns la finalul limbajului C. Astfel, încep să se
+distreze cu diverese puzzleuri pe care le găsiți și voi mai jos. Spor la distracție!
+a) [2p] Pentru funcția a(), schimbând doar tipul variabilelor implicate, realizați afișarea mesajului Arithmetics
+is arithmeting!.
+b) [3p] Completați conținutul funcției b(void *f) pentru ca aceasta să realizeze un apel la o funcție cu 2 argumente
+de tip int și valoare de retur de tip char * prin intermediul pointerului f, primit ca parametru. Cei doi parametri
+primiți de f() vor fi valorile globale random1 și random2. Printați rezultatul.
+c) [2p] Pentru executabilul file, determinați numele tuturor simbolurilor exportate aflate în zona .bss.
+d) [3p] Folosind un tool pentru decompilare, aflați cheia pentru ca funcția c() să conducă la afișarea mesajului
+You, dog....
+Subiectul 2
+Ce e mai interesant decât să faci frontend, se întreabă studenții? Să rezolvi probleme simple în assembly! Acolo joaca
+nu mai e joacă, iar div-ul dă dureri de cap!
+a) [3p] Fie vectorul de bytes colors ce reține cele 4 culori necesare siteului sub formă RGB, unde grupuri de câte
+3 octeți consecutivi formează o culoare. Pentru că cea mai frumoasă culoare este rozul (identificată prin tuplul
+255, 50, 255), afișați numărul de apariții a acesteia în vectorul colors.
+b) [4p] Siteul pe care îl vom scrie în assembly are nevoie de un owner. Acesta este un id nenul, preluat din cel
+de-al doilea argument în linie de comandă al programului. Transformați cel de-al doilea argument în linie de
+comandă al programului din string în întreg folosind atoi și afișați-l sub forma My id is: <id>, folosind
+printf. Dacă programul nu este invocat cu mai mult de un argument, afișați folosind printf mesajul Not
+enough arguments.
+c) [3p] Verificați dacă idul primit ca al doilea argument al programului de la punctul anterior este palindrom. În
+cazul în care este, afișați mesajul My id is palindrome, altfel My id is not palindrome.
+
+10.05.2025
+
+

@@ -1,0 +1,35 @@
+Test Practic Midterm PCLP2 - Varianta 06
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+În urma unui atac, ați găsit pe sistemul vostru unul din fișierele sursă care au fost folosite pentru a exploata sistemul.
+Din păcate, câteva linii de cod au fost corupte.
+a) [2p] În funcția f(), definiți variabila locală p, astfel încât să se afișeze mesajul So far so good!. Atenție, nu
+modificați funcția, doar adăugați definiția variabilei p.
+b) [3p] În funcția g() se citește un întreg, folosind funcția scanf(). Găsiți valoarea de intrare corectă astfel încât
+funcția să afișeze mesajul Getting stronger. Atenție, nu modificați funcția. Doar rulați programul și dați
+valoarea de intrare corectă de la stdin.
+c) [5p] În funcția main(), apelați funcția h() cu argumentele corespunzătoare pentru a afișa mesajul Pointer hell.
+Subiectul 2
+a) [3p] Declarați un vector local, funcției main, care să conțină elementele de tip int {0, 1, 1, 1, 2, 3, 3, 5,
+6, 6, 6, 6, 6}. Calculați și afișați suma elementelor vectorului alocat.
+b) [4p] Scrieți o funcție cu semnătura int uniq(int *v, int size) care va șterge elementele duplicate din vectorul
+v, sortat crescător. Modificările se vor face asupra vectorului existent primit ca parametru, fără să
+folosiți un vector auxiliar. Funcția va returna dimensiunea noului vector. Pentru vectorul test_b declarat
+în secțiunea .data, apelați funcția uniq și afișați noua sa dimensiune în cadrul funcției main.
+c) [3p] Apelați funcția uniq folosind vectorul declarat local funcției main. Afișați vectorul rezultat după apelarea
+funcției uniq folosind funcția printf().
+
+10.05.2025
+
+

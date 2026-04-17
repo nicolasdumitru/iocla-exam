@@ -26,75 +26,110 @@ extern printf
 global main
 
 main:
-    push ebp
-    mov ebp, esp
+    push rbp
+    mov rbp, rsp
     
     ; Exercise a: Overflow Detection
-    push header_ex1
+    lea rdi, [rel header_ex1]
+    xor eax, eax
     call printf
-    add esp, 4
     
     ; TODO a: Add speed to each coordinate, but check for overflow
     ; Jump to the overflow_detected label if it is the case
+    mov eax, dword [rel coordonates]     ; X coordinate
+    add eax, dword [rel speed]           ; Add speed
+    jo overflow_detected
+    mov ebx, eax                         ; Save new X
+
+    mov ecx, dword [rel coordonates + 4] ; Y coordinate
+    add ecx, dword [rel speed]           ; Add speed
+    jo overflow_detected
     
-final_ex1:
-    push separator
+    ; Trajectory successful
+    lea rdi, [rel msg_succes]
+    mov esi, ebx
+    mov edx, ecx
+    xor eax, eax
     call printf
-    add esp, 4
+    jmp final_ex1
+
+overflow_detected:
+    lea rdi, [rel msg_overflow]
+    xor eax, eax
+    call printf
+
+final_ex1:
+    lea rdi, [rel separator]
+    xor eax, eax
+    call printf
     
     ; Exercise b: Matrix Addressing Correction
-    push header_ex2
+    lea rdi, [rel header_ex2]
+    xor eax, eax
     call printf
-    add esp, 4
     
     ; Coordinates of the searched element (row 2, column 1)
     mov edi, 1    ; Column
     mov esi, 2    ; Row
     
     ; TODO b: Correct the addressing to get the correct element from the matrix
-    mov eax, matrix
+    ; matrix is 3x3 of dwords, row-major: pos = (row * 3 + col) * 4
+    mov eax, esi
+    imul eax, 3
     add eax, edi
-    add eax, esi
-    mov ebx, [eax]
+    lea rbx, [rel matrix]
+    mov ebx, dword [rbx + rax * 4]
     
     ; Display the result
-    push ebx          ; Element value
-    push edi          ; Column
-    push esi          ; Row
-    push format_matrix
+    push rbx          ; Element value (preserve to balance or pass)
+    ; In 64-bit, args go in rdi, rsi, rdx, rcx, r8, r9
+    ; The format string is "Element at position (%d,%d) is: %d"
+    ; So rsi = row, rdx = col, rcx = val
+    mov ecx, ebx      ; rcx = Element value
+    mov edx, edi      ; rdx = Column
+    ; rsi is already Row (it was 2)
+    lea rdi, [rel format_matrix]
+    xor eax, eax
     call printf
-    add esp, 16
+    pop rbx
     
-    push separator
+    lea rdi, [rel separator]
+    xor eax, eax
     call printf
-    add esp, 4
     
     ; Exercise c: Processing Binary Messages as ASCII Strings
-    push header_ex3
+    lea rdi, [rel header_ex3]
+    xor eax, eax
     call printf
-    add esp, 4
     
     ; TODO c: Traverse the int array and extract each byte
     ; transforming it into an ASCII character in decoded_message
+    lea rsi, [rel binary_message]
+    lea rdi, [rel decoded_message]
+    mov ecx, dword [rel size]
+    shl ecx, 2      ; multiply by 4 to get number of bytes
     
-    mov esi, binary_message
-    mov edi, decoded_message
-    mov ecx, [size]     ; Number of ints
-    
-    ; Implement the conversion
-    
+.decode_loop:
+    test ecx, ecx
+    jz .decode_done
+    mov al, byte [rsi]
+    mov byte [rdi], al
+    inc rsi
+    inc rdi
+    dec ecx
+    jmp .decode_loop
+.decode_done:
     ; Display the decoded message
-    push decoded_message
-    push format_message
+    lea rdi, [rel format_message]
+    lea rsi, [rel decoded_message]
+    xor eax, eax
     call printf
-    add esp, 8
     
-    push separator
+    lea rdi, [rel separator]
+    xor eax, eax
     call printf
-    add esp, 4
     
     ; Return 0
     xor eax, eax
-    mov esp, ebp
-    pop ebp
+    leave
     ret

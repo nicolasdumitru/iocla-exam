@@ -3,7 +3,12 @@
 
 uint8_t calculate_time_jump(uint8_t currentYear, uint8_t destinationYear) {
     // TODO a: Determine the correct value of timeJump to reach destinationYear
-    return 0;
+    // Because the timeline acts within a single byte length [0, 255] (256 units),
+    // subtracting the two uint8_t variables will automatically underflow and compute 
+    // the correct required circular time jump interval.
+    // e.g. 20 - 250 = -230 = 26 in unsigned 8-bit math.
+    // currentYear (250) + time_jump (26) = 276 = 20 (mod 256).
+    return destinationYear - currentYear;
 }
 
 void test_time_jump() {
@@ -22,20 +27,22 @@ void test_time_jump() {
 }
 
 // TODO b: Rearrange the structure to save memory
+// Rearranging in decreasing variable size strictly removes memory padding between attributes.
+// The optimal memory alignment order is: 8-byte, 4-byte, 2-byte, then 1-byte entries.
 struct SpaceColony {
-    uint32_t id;
-    char name[17];
-    double energy_reserve;
-    uint8_t sector_type;
-    char commander[8];
-    uint16_t security_level;
-    uint8_t is_inhabited;
-    uint32_t resource_count;
-    char coordinates[5];
-    uint16_t alliance_id;
-    uint8_t status_flags;
-    double defense_rating;
-    int *useless_entry;
+    double energy_reserve;     // 8 bytes
+    double defense_rating;     // 8 bytes
+    int *useless_entry;        // 8 bytes (or 4 bytes) depending on x86/x64
+    uint32_t id;               // 4 bytes
+    uint32_t resource_count;   // 4 bytes
+    uint16_t security_level;   // 2 bytes
+    uint16_t alliance_id;      // 2 bytes
+    char name[17];             // 17 bytes
+    char commander[8];         // 8 bytes
+    char coordinates[5];       // 5 bytes
+    uint8_t sector_type;       // 1 byte
+    uint8_t is_inhabited;      // 1 byte
+    uint8_t status_flags;      // 1 byte
 };
 
 void test_space_colony() {
@@ -59,6 +66,31 @@ void test_space_colony() {
 
 // TODO c: Implement the function using ONLY goto and if (no for, while)
 void detect_anomalies(int16_t* signals, uint8_t length, uint8_t* anomalies) {
+    uint8_t i = 0;
+
+loop_start:
+    if (i == length) {
+        goto end;
+    }
+    // Condition checks: less than 0 or greater than 100
+    if (signals[i] < 0) {
+        goto increment;
+    }
+    if (signals[i] > 100) {
+        goto increment;
+    }
+    
+    // Valid signal, skip incrementing
+    goto next;
+
+increment:
+    (*anomalies)++;
+
+next:
+    i++;
+    goto loop_start;
+
+end:
     return;
 }
 

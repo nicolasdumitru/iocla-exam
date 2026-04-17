@@ -1,0 +1,35 @@
+Test Practic Midterm PCLP2 - Varianta 07
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+a) [2p] Minimizați dimensiunea structurii struct s din fișierul file.c numai prin reordonarea câmpurilor din
+aceasta.
+b) [1p] Declarați o variabilă numită my_var în fișierul file.c, care să fie alocată în secțiunea .rodata și simbolul
+său să fie neexportat.
+c) [4p] Introduceți inputul corect astfel încât să se afișeze You get a cookie! la rulare.
+d) [3p] Completați funcția void solve(struct text letter) din fișierul all_pointers.c pentru a repara eroarea
+de la rulare astfel încât să se afișeze conținutul textului din letter după aplicarea funcției number_lines.
+• secvența de apeluri number_lines și print_text trebuie să rămână neschimbată!
+Subiectul 2
+a) [3p] Scrieți o funcție cu semnătura void transform_string(char *str) care va transforma in-place literele
+mici din șirul str în cifre după formula str[i] = '0' + str[i] % 8.
+• Șirul de caractere transmis ca parametru va avea numai litere mici, mari și semne de punctuație.
+b) [4p] Scrieți o funcție cu semnătura void apply_digit_sum(int *arr, int size) care va aplica funcția externă void sum_digits(int *n) pe fiecare element al vectorului arr.
+• spre exemplu, pentru array-ul {123, 456, 789, 101112, 131415} se va aplica funcția sum_digits pe fiecare
+element, rezultând array-ul {6, 15, 24, 6, 15}
+c) [3p] Alocați pe stivă array-ul {45, 64, 911, 1234, 52344} și aplicați funcția apply_digit_sum pe el. Afișați
+array-ul rezultat folosind funcția printf.
+
+10.05.2025
+
+

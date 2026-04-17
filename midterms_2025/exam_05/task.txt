@@ -1,0 +1,43 @@
+Test Practic Midterm PCLP2 - Varianta 05
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+Andreea este pasionată de pointeri și structuri și vrea să o ajutați în rezolvarea următoarelor sarcini.
+a) [2p] Șirul de octeți raw_data reprezintă o înșiruire de 10 structuri de tip Person. Implementați funcția
+show_raw_persons care afișează vârsta și numele fiecărei persoane din șirul de caractere primit ca argument.
+b) [2p] Implementați funcția allocate_persons care alocă un vector de num structuri de tip Person și le inițializează
+cu primele num elemente din șirul de biți raw_data. Întoarceți rezultatul alocarii. Afișați apoi vectorul de
+structuri rezultat prin implementarea funcției show_persons.
+c) [3p] Implementați funcția sort_persons care ordonează crescător în funcție de numărul de biți setați din vârstă
+pentru persoanele din vectorul alocat la punctul anterior. În caz că numerele de biți setați din vârstă sunt egale,
+sortarea se face după ordinea alfabetică a numelor. Afișați rezultatul folosind funcția show_persons.
+d) [3p] Implementați funcția shorten_persons care va scurta toate numele din vectorul de persoane sortat obținut
+mai sus, aplicând următoarea transformare. Pentru toate numele care au strict mai mult de trei litere se păstrează
+prima și ultima literă, iar restul literelor sunt înlocuite de numărul literelor. Numele cu mai puțin de 3 litere nu
+sunt afectate. Afișați noul vector obținut folosind funcția show_persons.
+Spre exemplu, numele “Anais” devine “A5s”, iar numele “Ana” rămâne neschimbat.
+Subiectul 2
+Eroul nostru, Traian, a învăţat recent despre divizibilitate şi apeluri de funcţii aşa că vă provoacă să rezolvați următoarele probleme.
+a) [3p] Implementaţi funcţia int is_divisor(unsigned int n, unsigned int i) care întoarce valoarea 1 dacă
+i este un divizor al numărului n şi 0 în rest. Afişaţi rezultatul întors folosind funcţia printf.
+b) [3p] Implementaţi funcţia int count_divisors(unsigned int n) care calculează numărul de divizori ai
+numărului n. Nu vom lua în calcul 1 şi numărul însuşi atunci când numărăm divizorii. Folosiţi funcţia printf
+pentru afişare. Utilizați funcţia is_divisor pentru a număra divizorii.
+c) [4p] Rezervaţi memorie în secţiunea .bss pentru un şir de întregi res cu len elemente. Completaţi acest şir
+astfel încât fiecare element va reprezenta numărul de divizori ai elementului de pe poziţia corespunzătoare din
+şirul arr declarat în secţiunea .data. Afişaţi folosind funcția printf elementele şirului de întregi res cu len
+elemente, cu toate elementele pe aceeaşi linie, separate de către un spaţiu.
+
+10.05.2025
+
+

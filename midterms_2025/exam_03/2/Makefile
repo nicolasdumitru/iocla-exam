@@ -1,9 +1,9 @@
 NASM = nasm
-ASM_FLAGS = -f elf32 -g
+ASM_FLAGS = -f elf64 -g
 LD=gcc
-LDFLAGS = -m32 -g -no-pie
+LDFLAGS = -no-pie -g
 CC=gcc
-CCFLAGS = -m32 -g -c
+CCFLAGS = -g -c
 BINARIES = emitter attack passwords
 
 all : $(BINARIES)

@@ -10,34 +10,50 @@ struct stud {
 
 void print_addresses(struct stud *stud)
 {
-	/* TODO */
+	/* TODO a */
 
-	printf("stud->name: TODO\n", TODO);
-	printf("stud->grades: TODO\n", TODO);
-	printf("stud->mean: TODO\n", TODO);
+	printf("stud->name: %p\n", (void*)stud->name);
+	printf("stud->grades: %p\n", (void*)stud->grades);
+	printf("stud->mean: %p\n", (void*)&stud->mean);
 }
 
 void print_stud(struct stud *stud)
 {
-	/* TODO */
-
-	printf("Name: %s\n", TODO);
-	printf("Grades: %d %d %d\n", 0 /*TODO*/, 0 /*TODO*/, 0/*TODO*/);
-	printf("Mean: %f\n", 0/*TODO*/);
+	/* TODO b */
+	// We lack dot and bracket operator access. Use direct pointer casting and offsets.
+	char *p = (char *)stud;
+	
+	// name is at offset 0
+	// grades is at offset 256
+	// mean is at offset 260 (due to 1 byte padding after 3-byte grades array, 256+3 = 259, padding align to 4 -> 260)
+	printf("Name: %s\n", p);
+	printf("Grades: %d %d %d\n", *(p + 256), *(p + 257), *(p + 258));
+	printf("Mean: %f\n", *(float*)(p + 260));
 }
 
 void print_vec(struct stud *studs, int n)
 {
-	/* TODO */
-	return;
+	/* TODO c */
+	// We cannot use loops. Recursion is the way.
+	if (n <= 0) return;
+	
+	print_stud(studs);
+	print_vec(studs + 1, n - 1);
 }
 
 void toggle_case(char *name)
 {
-	/* TODO */
-
-	return;
-
+	/* TODO d */
+	// Recursion to traverse without loops, direct dererfence without brackets.
+	if (*name == '\0') return;
+	
+	char c = *name;
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+		// Toggle case utilizing the XOR binary operator with the 5th bit space
+		*name ^= 32;
+	}
+	
+	toggle_case(name + 1);
 }
 
 int main(void)

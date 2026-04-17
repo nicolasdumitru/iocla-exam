@@ -1,0 +1,44 @@
+Test Practic Midterm PCLP2 - Varianta 04
+
+Indicații
+• Testul conține 2 subiecte și durează 60 de minute. Fiecare subiect se punctează cu maxim 10 puncte pentru o
+rezolvare corectă și completă.
+• Se pot obține punctaje parțiale pentru un subiect numai dacă acest lucru este specificat.
+• Pentru a fi punctată, o rezolvare trebuie să includă și metoda de verificare a funcționalității acesteia.
+• Pentru subiectul 2, este recomandată utilizarea macroului PRINTF32 pentru afișarea la ecran, doar dacă nu
+este explicit impusă utilizarea funcției printf() de către enunț.
+• Ordinea de rezolvare a subiectelor este la alegerea voastră.
+• Subiectele se rezolvă pe mașina virtuală de PCLP2.
+
+Subiecte
+Subiectul 1
+Dorim să facem o sesiune de debugging a unui cod în C care lucrează cu structuri. Pentru aceasta, avem nevoie de mai
+multe funcții, pe care le veți implementa în cadrul acestui exercițiu. În implementarea voastră, în afara task-ului
+a), nu aveți voie
+• să folosiți construcții while, do while, for,
+• să accesați elementele structurii folosind operatorii . și ->
+• și nici elementele unui vector folosind [].
+a) [2p] Completați TODO-urile din cadrul funcției print_addresses astfel încât să afișați adresa fiecărui câmp din
+cadrul structurii primită ca argument. Pentru acest task, puteți folosi operatorii . sau ->.
+b) [2p] Completați TODO-urile din cadrul funcției print_struct astfel încât să afișați fiecare câmp din structura
+primită ca argument.
+c) [3p] Completați TODO-urile din cadrul funcției print_vec astfel încât să afișați, folosind funcția print_struct
+de la task-ul b), fiecare element al vectorului primit ca argument.
+d) [3p] Completați TODO-urile din cadrul funcției toggle_case care transformă șirul primit ca argument astfel:
+caracterele upper-case devin lower-case, iar caracterele lower-case devin upper-case (exemplu, șirul de caractere
+“Ana” va deveni, în urma transformării, șirul de caractere “aNA”). Pentru acest task, este obligatoriu să
+folosiți doar operații binare pentru transformarea caracterelor.
+Subiectul 2
+Pentru că vreți să faceți debugging avansat codului vostru cu structuri, vă mutați cu implementarea unor funcții în
+limbaj de asamblare.
+a) [3p] Completați funcția print_struct_elem astfel încât aceasta să afișeze fiecare element al vectorului grades
+din structura primită ca parametru.
+b) [3p] Completați funcția compute_final care primește un vector de valori short și dimensiunea acestuia și calculează cel mai apropiat număr întreg pornind de la media aritmetică a numerelor din vector.
+c) [4p] Completați funcția check_final_grade care primește un vector de elemente de tip struct student_t și
+dimensiunea acestuia și parcurge fiecare element, verificând câmpul final ca să fie cel mai apropiat întreg al
+mediei aritmetice a elementelor din vectorul grades[]. Dacă nota finală nu corespunde, corectați câmpul din
+structură. În rezolvarea acestui task, veți folosi funcțiile print_struct_elem și compute_final.
+
+10.05.2025
+
+
