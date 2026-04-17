@@ -16,12 +16,14 @@
       pkgs = nixpkgs.legacyPackages."${system}";
     in
     {
-      devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+      # Need multistdenv for 32 bit support; clang
+      devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.gccMultiStdenv; } {
+      # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+      # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.multiStdenv; } {
         packages = with pkgs; [
           # WARNING: Do NOT add gcc, clang, gligc, libcxx, etc.
           # They will break the environment, leading to compilation or LSP errors.
           
-          # Note: Objdump is packaged with the Clang toolchain
           clang-tools
           meson
           ninja
@@ -33,6 +35,9 @@
           gdb
           pwndbg.packages."${system}".default
           valgrind
+          # Note: Objdump is packaged with the GCC/Clang toolchain
+          # If necessary, try adding binutils.
+          # binutils
 
           ghidra
 
