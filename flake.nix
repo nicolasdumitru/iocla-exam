@@ -18,12 +18,12 @@
     {
       # Need multistdenv for 32 bit support; clang
       devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.gccMultiStdenv; } {
-      # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
-      # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.multiStdenv; } {
+        # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+        # devShell."${system}" = pkgs.mkShell.override { stdenv = pkgs.multiStdenv; } {
         packages = with pkgs; [
           # WARNING: Do NOT add gcc, clang, gligc, libcxx, etc.
           # They will break the environment, leading to compilation or LSP errors.
-          
+
           clang-tools
           meson
           ninja
@@ -40,6 +40,7 @@
           # binutils
 
           ghidra
+          jdk25
 
           file
 
