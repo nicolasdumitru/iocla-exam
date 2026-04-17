@@ -1,0 +1,13 @@
+ ./file 
+Number of pinks is: 2
+Not enough arguments
+
+./file 12
+Number of pinks is: 2
+My id is: 12
+My id is not palindrome
+
+./file 121
+Number of pinks is: 2
+My id is: 121
+My id is palindrome
