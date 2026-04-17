@@ -2,26 +2,24 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 
 BasedOnStyle: LLVM
-Language: C
+Language: Cpp
 
-ColumnLimit: 80
+ColumnLimit: 100
 
-IndentWidth: 8
-ContinuationIndentWidth: 8
-AccessModifierOffset: -8
+IndentWidth: 4
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
 TabWidth: 8
-# UseTab: ForIndentation
-UseTab: ForContinuationAndIndentation
-# UseTab: AlignWithSpaces
+UseTab: Never
 
 IndentCaseLabels: false
-BreakBeforeBraces: Linux
+BreakBeforeBraces: Attach
 AllowShortBlocksOnASingleLine: Empty
 AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 
 AllowShortLoopsOnASingleLine: false
-AllowShortCaseLabelsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
 AlwaysBreakTemplateDeclarations: Yes
 
 PointerAlignment: Right
