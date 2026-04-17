@@ -3,10 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    pwndbg.url = "github:pwndbg/pwndbg";
   };
   outputs =
     {
       nixpkgs,
+      pwndbg,
       ...
     }:
     let
@@ -18,6 +20,8 @@
         packages = with pkgs; [
           # WARNING: Do NOT add gcc, clang, gligc, libcxx, etc.
           # They will break the environment, leading to compilation or LSP errors.
+          
+          # Note: Objdump is packaged with the Clang toolchain
           clang-tools
           meson
           ninja
@@ -27,9 +31,10 @@
           gnumake
 
           gdb
+          pwndbg.packages."${system}".default
           valgrind
 
-          # ghidra
+          ghidra
 
           file
 
