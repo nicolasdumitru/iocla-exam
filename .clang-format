@@ -1,0 +1,32 @@
+# Documentation:
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+BasedOnStyle: LLVM
+Language: C
+
+ColumnLimit: 80
+
+IndentWidth: 8
+ContinuationIndentWidth: 8
+AccessModifierOffset: -8
+TabWidth: 8
+# UseTab: ForIndentation
+UseTab: ForContinuationAndIndentation
+# UseTab: AlignWithSpaces
+
+IndentCaseLabels: false
+BreakBeforeBraces: Linux
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: Yes
+
+PointerAlignment: Right
+
+SortIncludes: CaseInsensitive
+
+AlignTrailingComments: true
+SpacesBeforeTrailingComments: 1
