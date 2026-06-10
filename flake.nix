@@ -17,6 +17,23 @@
         inherit system;
         config.allowUnfree = true;
       };
+      ida-free-unwrapped = pkgs.ida-free.overrideAttrs (finalAttrs: _: {
+        version = "9.3sp1";
+        src = pkgs.requireFile {
+          name = "ida-free-pc_${pkgs.lib.replaceStrings [ "." ] [ "" ] finalAttrs.version}_x64linux.run";
+          url = "https://my.hex-rays.com/dashboard/download-center/installers/release/${finalAttrs.version}/ida-free";
+          hash = "sha256-6fyW1ToWBK9BEBA9bVjduHl2TSqqzfKG17MmkjhynsM=";
+        };
+      });
+      ida-free = pkgs.symlinkJoin {
+        name = "${ida-free-unwrapped.name}-jemalloc";
+        paths = [ ida-free-unwrapped ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/ida \
+            --set LD_PRELOAD ${pkgs.jemalloc}/lib/libjemalloc.so
+        '';
+      };
     in
     {
       # Need multistdenv for 32 bit support; clang
