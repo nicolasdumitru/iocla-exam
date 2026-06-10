@@ -13,7 +13,10 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages."${system}";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       # Need multistdenv for 32 bit support; clang
@@ -39,7 +42,7 @@
           # If necessary, try adding binutils.
           # binutils
 
-          ghidra
+          ida-free
           jdk25
 
           file
@@ -49,7 +52,7 @@
               python-lsp-server
             ]
           ))
-          pyright
+          pyrefly
           black
 
           nil
