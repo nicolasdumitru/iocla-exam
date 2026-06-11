@@ -49,8 +49,9 @@
           ninja
 
           nasm
-          nasmfmt
           gnumake
+          
+          asm-lsp
 
           gdb
           pwndbg.packages."${system}".default
