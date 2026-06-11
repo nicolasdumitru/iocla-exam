@@ -90,6 +90,7 @@ sort_array:
     mov rcx, cmp_long    ; comparator function pointer
     call qsort
 
+    mov rsp, rbp
     pop rbp
     ret
 
