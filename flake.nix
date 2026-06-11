@@ -51,7 +51,7 @@
           nasm
           gnumake
           
-          asm-lsp
+          # asm-lsp # probably has a memory leak; eventually makes the entire system grind to a halt
 
           gdb
           pwndbg.packages."${system}".default
